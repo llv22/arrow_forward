@@ -135,11 +135,11 @@ if(NOT DEFINED CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 11)
 endif()
 
-# This ensures that things like c++17 get passed correctly
+# This ensures that things like c++14 get passed correctly
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 17)
-elseif(${CMAKE_CXX_STANDARD} VERSION_LESS 17)
-  message(FATAL_ERROR "Cannot set a CMAKE_CXX_STANDARD smaller than 17")
+  set(CMAKE_CXX_STANDARD 14)
+elseif(${CMAKE_CXX_STANDARD} VERSION_LESS 14)
+  message(FATAL_ERROR "Cannot set a CMAKE_CXX_STANDARD smaller than 14 on macOS 10.13.6")
 endif()
 
 # We require a C++17 compliant compiler

@@ -159,7 +159,7 @@ template <>
 Result<DeclarationInfo> ProcessEmit(const substrait::ProjectRel& rel,
                                     const DeclarationInfo& no_emit_declr,
                                     const std::shared_ptr<Schema>& schema) {
-  return ProcessEmitProject(rel.has_common() ? std::optional(rel.common()) : std::nullopt,
+  return ProcessEmitProject(rel.has_common() ? std::optional<substrait::RelCommon>(rel.common()) : std::nullopt,
                             no_emit_declr, schema);
 }
 
@@ -234,17 +234,17 @@ std::optional<substrait::RelCommon> GetExtensionRelCommon(const substrait::Rel& 
   switch (rel.rel_type_case()) {
     case substrait::Rel::RelTypeCase::kExtensionLeaf: {
       const auto& ext = rel.extension_leaf();
-      return ext.has_common() ? std::optional(ext.common()) : std::nullopt;
+      return ext.has_common() ? std::optional<substrait::RelCommon>(ext.common()) : std::nullopt;
     }
 
     case substrait::Rel::RelTypeCase::kExtensionSingle: {
       const auto& ext = rel.extension_single();
-      return ext.has_common() ? std::optional(ext.common()) : std::nullopt;
+      return ext.has_common() ? std::optional<substrait::RelCommon>(ext.common()) : std::nullopt;
     }
 
     case substrait::Rel::RelTypeCase::kExtensionMulti: {
       const auto& ext = rel.extension_multi();
-      return ext.has_common() ? std::optional(ext.common()) : std::nullopt;
+      return ext.has_common() ? std::optional<substrait::RelCommon>(ext.common()) : std::nullopt;
     }
 
     default: {
